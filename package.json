@@ -5,9 +5,12 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/typings/src/index.d.ts",
+  "files": ["dist/cjs", "dist/esm", "dist/typings", "LICENSE"],
   "scripts": {
-    "build": "rollup-scripts build",
-    "test": "jest --test-environment jsdom --collect-coverage --detect-open-handles"
+    "typings": "tsc",
+    "build": "npm run typings && rollup-scripts build",
+    "test": "jest --test-environment jsdom --collect-coverage --detect-open-handles",
+    "prepublishOnly": "npm run test && npm run build"
   },
   "repository": {
     "type": "git",
