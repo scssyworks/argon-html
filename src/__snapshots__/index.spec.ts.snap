@@ -57,7 +57,7 @@ exports[`html tag should render HTML correctly with variables 1`] = `
     <div
       class="test-array"
     >
-      ["test array",1,true,{"q":"test object 2"}]
+      test array 1 true {"q":"test object 2"}
     </div>
     
           
