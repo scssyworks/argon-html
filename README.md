@@ -68,7 +68,7 @@ console.log(htmlStr);
  */
 ```
 
-### Convert template string to DocumentFragement
+### Convert template string to DocumentFragment
 
 ```ts
 import { html } from "argon-html";
