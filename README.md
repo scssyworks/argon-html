@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/scssyworks/argon-html/actions/workflows/codeql.yml/badge.svg)](https://github.com/scssyworks/argon-html/actions/workflows/codeql.yml)
+
 # Argon HTML
 
 HTML template tag to convert template string to DOM nodes
