@@ -1,11 +1,16 @@
 {
   "name": "argon-html",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "HTML template tag to convert template string to DOM nodes",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/typings/src/index.d.ts",
-  "files": ["dist/cjs", "dist/esm", "dist/typings", "LICENSE"],
+  "files": [
+    "dist/cjs",
+    "dist/esm",
+    "dist/typings",
+    "LICENSE"
+  ],
   "scripts": {
     "typings": "tsc",
     "build": "npm run typings && rollup-scripts build",
