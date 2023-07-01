@@ -1,14 +1,10 @@
-function isObject(item: any) {
-  return item && typeof item === 'object';
-}
-
 function handleArray(arr: any[]): string {
   return arr.reduce((prev: string, item: any) => {
     const p = prev ? `${prev} ` : prev;
     if (item == null) {
       return p.trim();
     }
-    if (isObject(item)) {
+    if (typeof item === 'object') {
       return `${p}${JSON.stringify(item)}`;
     }
     return `${p}${item}`;
@@ -23,22 +19,17 @@ export function htmlString(
   if (variables.length === 0) {
     str = structure.join('');
   } else {
-    variables.forEach((v, i) => {
-      if (['number', 'string', 'boolean'].includes(typeof v)) {
-        str += `${structure[i]}${v}`;
+    str = variables.reduce((prev: string, curr: any, index: number) => {
+      const struct = `${prev}${structure[index]}`;
+      if (curr == null) {
+        return struct;
+      } else if (Array.isArray(curr)) {
+        return `${struct}${handleArray(curr)}`;
+      } else if (typeof curr === 'object') {
+        return `${struct}${JSON.stringify(curr)}`;
       }
-      if (v == null) {
-        // handles both null and undefined
-        str += structure[i];
-      }
-      if (isObject(v)) {
-        if (Array.isArray(v)) {
-          str += `${structure[i]}${handleArray(v)}`;
-        } else {
-          str += `${structure[i]}${JSON.stringify(v)}`;
-        }
-      }
-    });
+      return `${struct}${curr}`;
+    }, '');
     str += structure[structure.length - 1];
   }
   return str;
