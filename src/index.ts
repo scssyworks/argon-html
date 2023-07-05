@@ -1,3 +1,21 @@
+function nodeToString(node: Node): string {
+  switch (node.nodeType) {
+    case Node.DOCUMENT_FRAGMENT_NODE:
+      return Array.from(node.childNodes).reduce(
+        (prev, next) => prev + nodeToString(next),
+        ''
+      );
+    case Node.ELEMENT_NODE:
+      return (node as Element).outerHTML;
+    case Node.TEXT_NODE:
+      return `${node.nodeValue}`;
+    case Node.COMMENT_NODE:
+      return `<!--${node.nodeValue}-->`;
+    default:
+      return '';
+  }
+}
+
 function handleArray(arr: any[]): string {
   return arr.reduce((prev: string, item: any) => {
     const p = prev ? `${prev} ` : prev;
@@ -26,6 +44,9 @@ export function htmlString(
       } else if (Array.isArray(curr)) {
         return `${struct}${handleArray(curr)}`;
       } else if (typeof curr === 'object') {
+        if (curr instanceof Node) {
+          return `${struct}${nodeToString(curr)}`;
+        }
         return `${struct}${JSON.stringify(curr)}`;
       }
       return `${struct}${curr}`;
