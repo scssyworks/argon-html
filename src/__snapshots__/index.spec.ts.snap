@@ -70,6 +70,30 @@ exports[`html tag should render HTML correctly with variables 1`] = `
       class="test-undefined"
     />
     
+          
+    <div
+      class="test-fragment"
+    >
+      <div />
+    </div>
+    
+          
+    <div
+      class="test-html"
+    >
+      <div />
+    </div>
+    
+          
+    <div
+      class="test-text-node"
+    >
+      Hello World
+    </div>
+    
+          
+    <!--This is comment-->
+    
         
   </div>
   

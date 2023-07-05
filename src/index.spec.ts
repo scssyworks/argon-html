@@ -14,6 +14,11 @@ describe('html tag', () => {
     const v5 = ['test array', 1, true, null, undefined, { q: 'test object 2' }];
     const v6 = null;
     const v7 = undefined;
+    const v8 = document.createDocumentFragment();
+    v8.appendChild(document.createElement('div'));
+    const v9 = document.createElement('div');
+    const v10 = document.createTextNode('Hello World');
+    const v11 = document.createComment('This is comment');
     const fragment = html`
         <div class="test-class" id="testId">
           <div class="test-string">${v1}</div>
@@ -23,6 +28,10 @@ describe('html tag', () => {
           <div class="test-array">${v5}</div>
           <div class="test-null">${v6}</div>
           <div class="test-undefined">${v7}</div>
+          <div class="test-fragment">${v8}</div>
+          <div class="test-html">${v9}</div>
+          <div class="test-text-node">${v10}</div>
+          ${v11}
         </div>
     `;
     expect(fragment).toMatchSnapshot();
