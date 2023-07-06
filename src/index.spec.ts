@@ -31,6 +31,7 @@ describe('html tag', () => {
           <div class="test-fragment">${v8}</div>
           <div class="test-html">${v9}</div>
           <div class="test-text-node">${v10}</div>
+          <div class="test-document-node">${document}</div>
           ${v11}
         </div>
     `;

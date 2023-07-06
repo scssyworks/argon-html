@@ -92,6 +92,11 @@ exports[`html tag should render HTML correctly with variables 1`] = `
     </div>
     
           
+    <div
+      class="test-document-node"
+    />
+    
+          
     <!--This is comment-->
     
         
