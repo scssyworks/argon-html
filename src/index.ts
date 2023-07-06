@@ -64,3 +64,5 @@ export function html(
   template.innerHTML = htmlString(structure, ...variables);
   return template.content;
 }
+
+export * from './utils';
