@@ -3,14 +3,17 @@ export class ClassNames {
   constructor(...args: any[]) {
     args.forEach((arg) => {
       if (arg) {
-        if (typeof arg === 'string' && arg.trim()) {
-          this.#classList.push(arg);
+        if (['string', 'number'].includes(typeof arg)) {
+          const trimmedClass = `${arg}`.trim();
+          if (trimmedClass) {
+            this.#add(trimmedClass);
+          }
         } else if (Array.isArray(arg)) {
-          this.#classList.push(new ClassNames(...arg).transform());
+          this.#add(new ClassNames(...arg).transform());
         } else if (typeof arg === 'object') {
           Object.entries(arg).forEach(([className, expr]) => {
             if (expr) {
-              this.#classList.push(className);
+              this.#add(className.trim());
             }
           });
         }
@@ -19,6 +22,14 @@ export class ClassNames {
   }
   transform() {
     return this.#classList.join(' ');
+  }
+  #add(arg: string) {
+    arg.split(' ').forEach((cls) => {
+      const trimmedClass = cls.trim();
+      if (trimmedClass && !this.#classList.includes(trimmedClass)) {
+        this.#classList.push(trimmedClass);
+      }
+    });
   }
 }
 

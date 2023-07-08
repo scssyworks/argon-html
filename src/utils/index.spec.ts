@@ -13,15 +13,15 @@ describe('classNames', () => {
       'hello world'
     );
   });
-  it('should ignore arguments which are not string', () => {
+  it('should ignore arguments which are not string or number', () => {
     expect(
-      classNames({ hello: true, world: false }, 'world', null, true, false)
-    ).toBe('hello world');
+      classNames({ hello: true, world: false }, 'world', 104, null, true, false)
+    ).toBe('hello world 104');
   });
-  it('should preserve spaces in classes is passed', () => {
+  it('should NOT preserve spaces in classes if passed', () => {
     expect(
       classNames({ hello: true, world: false }, ' world ', { ' earth ': true })
-    ).toBe('hello  world   earth ');
+    ).toBe('hello world earth');
   });
   it('should ignore classes which are just created using spaces', () => {
     expect(classNames({ hello: true, world: false }, '     ')).toBe('hello');
@@ -30,5 +30,18 @@ describe('classNames', () => {
     expect(classNames({ hello: true, world: false }, ['world', 'earth'])).toBe(
       'hello world earth'
     );
+  });
+  it('should accept class string with spaces', () => {
+    expect(classNames('hello   world')).toBe('hello world');
+  });
+  it('should dedupe classes of same names', () => {
+    expect(
+      classNames(
+        'hello   world',
+        { hello: true, earth: true },
+        { world: false, globe: true },
+        'globe'
+      )
+    ).toBe('hello world earth globe');
   });
 });
