@@ -1,15 +1,15 @@
 function nodeToString(node: Node): string {
   switch (node.nodeType) {
-    case Node.DOCUMENT_FRAGMENT_NODE:
+    case 11:
       return Array.from(node.childNodes).reduce(
         (prev, next) => prev + nodeToString(next),
         ''
       );
-    case Node.ELEMENT_NODE:
+    case 1:
       return (node as Element).outerHTML;
-    case Node.TEXT_NODE:
+    case 3:
       return `${node.nodeValue}`;
-    case Node.COMMENT_NODE:
+    case 8:
       return `<!--${node.nodeValue}-->`;
     default:
       return '';
