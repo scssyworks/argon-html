@@ -1,3 +1,5 @@
+import { trim } from './utils';
+
 function nodeToString(node: Node): string {
   switch (node.nodeType) {
     case 11:
@@ -20,7 +22,7 @@ function handleArray(arr: any[]): string {
   return arr.reduce((prev: string, item: any) => {
     const p = prev ? `${prev} ` : prev;
     if (item == null) {
-      return p.trim();
+      return trim(p);
     }
     if (typeof item === 'object') {
       return `${p}${JSON.stringify(item)}`;

@@ -1,10 +1,13 @@
+export function trim(str: string) {
+  return str.trim();
+}
 export class ClassNames {
   #classList: string[] = [];
   constructor(...args: any[]) {
     args.forEach((arg) => {
       if (arg) {
         if (['string', 'number'].includes(typeof arg)) {
-          const trimmedClass = `${arg}`.trim();
+          const trimmedClass = trim(`${arg}`);
           if (trimmedClass) {
             this.#add(trimmedClass);
           }
@@ -13,7 +16,7 @@ export class ClassNames {
         } else if (typeof arg === 'object') {
           Object.entries(arg).forEach(([className, expr]) => {
             if (expr) {
-              this.#add(className.trim());
+              this.#add(trim(className));
             }
           });
         }
@@ -25,7 +28,7 @@ export class ClassNames {
   }
   #add(arg: string) {
     arg.split(' ').forEach((cls) => {
-      const trimmedClass = cls.trim();
+      const trimmedClass = trim(cls);
       if (trimmedClass && !this.#classList.includes(trimmedClass)) {
         this.#classList.push(trimmedClass);
       }
