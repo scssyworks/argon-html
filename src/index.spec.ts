@@ -18,7 +18,6 @@ describe('html tag', () => {
     v8.appendChild(document.createElement('div'));
     const v9 = document.createElement('div');
     const v10 = document.createTextNode('Hello World');
-    const v11 = document.createComment('This is comment');
     const fragment = html`
         <div class="test-class" id="testId">
           <div class="test-string">${v1}</div>
@@ -32,7 +31,6 @@ describe('html tag', () => {
           <div class="test-html">${v9}</div>
           <div class="test-text-node">${v10}</div>
           <div class="test-document-node">${document}</div>
-          ${v11}
         </div>
     `;
     expect(fragment).toMatchSnapshot();

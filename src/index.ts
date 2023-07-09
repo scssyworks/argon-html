@@ -11,8 +11,6 @@ function nodeToString(node: Node): string {
       return (node as Element).outerHTML;
     case 3:
       return `${node.nodeValue}`;
-    case 8:
-      return `<!--${node.nodeValue}-->`;
     default:
       return '';
   }
